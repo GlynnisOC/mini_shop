@@ -14,10 +14,10 @@ RSpec.describe "merchant show" do
         expect(page).to have_content(merchant_1.zip)
 
         visit "/merchants/#{merchant_2.id}"
-
         expect(page).to have_content(merchant_2.address)
         expect(page).to have_content(merchant_2.city)
         expect(page).to have_content(merchant_2.zip)
+        expect(page).to_not have_content(merchant_1.name)
       end
     end
   end
