@@ -20,5 +20,27 @@ RSpec.describe "merchant show" do
         expect(page).to_not have_content(merchant_1.name)
       end
     end
+
+    describe "I see a link to edit the merchant" do
+      it "after updating returns me to merchant show page with updated information" do
+        merchant_1 = Merchant.create(name: "Tommyknockers Brewery", address: "address", city: "city", state: "state", zip: "zip")
+        merchant_2 = Merchant.create(name: "Westbound and Down", address: "addresstoo", city: "citytoo", state: "statetoo", zip: "ziptoo")
+
+        visit "/merchants/#{merchant_1.id}"
+
+        click_link "Edit"
+
+        expect(current_path).to eq("/merchants/#{merchant_1.id}/edit")
+
+        fill_in "Name", with: "Tito's"
+        fill_in "Address", with: "123 Street"
+        fill_in "City", with: "Nowhere"
+        fill_in "State", with: "UT"
+        fill_in "Zip", with: "Code"
+        click_button "Update Merchant"
+
+        expect(current_path).to eq("/merchants/#{merchant_1.id}")
+      end
+    end
   end
 end
