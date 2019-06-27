@@ -4,8 +4,8 @@ RSpec.describe "merchant index" do
   describe "as a visitor" do
     describe "when I visit the index page" do
       it "shows name of each merchant in the system" do
-        merchant_1 = Merchant.create(name: "Tommyknockers Brewery")
-        merchant_2 = Merchant.create(name: "Westbound and Down")
+        merchant_1 = Merchant.create(name: "Tommyknockers Brewery", address: "address", city: "city", state: "state", zip: "zip")
+        merchant_2 = Merchant.create(name: "Westbound and Down", address: "addresstoo", city: "citytoo", state: "statetoo", zip: "ziptoo")
 
         visit '/merchants'
 
