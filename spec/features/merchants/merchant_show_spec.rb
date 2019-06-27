@@ -42,5 +42,24 @@ RSpec.describe "merchant show" do
         expect(current_path).to eq("/merchants/#{merchant_1.id}")
       end
     end
+
+    describe "I see a link to delete the merchant" do
+      it "after updating returns me to merchants index page" do
+        merchant_1 = Merchant.create(name: "Tommyknockers Brewery", address: "address", city: "city", state: "state", zip: "zip")
+        merchant_2 = Merchant.create(name: "Westbound and Down", address: "addresstoo", city: "citytoo", state: "statetoo", zip: "ziptoo")
+
+        visit '/merchants'
+
+        expect(page).to have_content("#{merchant_1.name}")
+        expect(page).to have_content("#{merchant_2.name}")
+
+        visit "/merchants/#{merchant_1.id}"
+
+        click_link "Delete"
+
+        expect(current_path).to eq("/merchants")
+        expect(page).to_not have_content("#{merchant_1.name}")
+      end
+    end
   end
 end
