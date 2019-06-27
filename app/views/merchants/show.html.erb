@@ -5,3 +5,4 @@
 <p>Zip: <%= @merchant.zip %></p>
 
 <%= link_to "Edit", "/merchants/#{@merchant.id}/edit" %>
+<%= link_to "Delete", "/merchants/#{@merchant.id}", method: :delete %>
