@@ -29,7 +29,7 @@ RSpec.describe "items index" do
     porter = merchant_2.items.create!(name: "Porter", description: "descriptiontwooooo", price: "4.00", image: "https://2fdltvvn8wp2rn64ywgk8o17-wpengine.netdna-ssl.com/wp-content/uploads/2017/11/baltic-porter-beer.jpg", active: true, inventory:  2, merchant_id: "#{merchant_2.id}")
 
     visit "/items"
-    save_and_open_page
+
     click_link "#{merchant_1.name}"
     expect(current_path).to eq("/merchants/#{merchant_1.id}")
 
