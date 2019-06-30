@@ -11,6 +11,10 @@ class MerchantsController < ApplicationController
   def new
   end
 
+  def items
+    @merchant = Merchant.find(params[:id])
+  end
+
   def create
     @merchant = Merchant.create(merchant_params)
     redirect_to '/merchants'
