@@ -1,4 +1,3 @@
-
 <img src="<%= @item.image %>" width="200px"></img>
 <h3><%= @item.name %></h3>
 <p>Description: <%= @item.description %></p>
@@ -6,3 +5,5 @@
 <p>Active: <%= @item.active %></p>
 <p>Inventory Count: <%= @item.inventory %></p>
 <p>Merchant: <%= @item.merchant_name %></p>
+
+<%= link_to "Edit Item", "/items/#{@item.id}/edit" %>
