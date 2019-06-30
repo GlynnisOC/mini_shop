@@ -5,4 +5,4 @@
 <p>Price: <%= @item.price %></p>
 <p>Active: <%= @item.active %></p>
 <p>Inventory Count: <%= @item.inventory %></p>
-<p>Merchant: <%= @item.merchant_name %></p>
+<p>Merchant: <%= link_to @item.merchant_name, "/merchants/#{@item.merchant_id}" %></p>
