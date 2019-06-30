@@ -35,7 +35,7 @@ RSpec.describe "item show" do
         pale = merchant_2.items.create!(name: "Pale Ale", description: "descriptionfive", price: "8.00", image: "https://www.mrbeer.com/media/catalog/product/cache/8872124951f387c8ded3f228faa55bea/b/e/beer-amber-pintulw_2_2.jpg", active: true, inventory:  2, merchant_id: "#{merchant_2.id}")
 
         visit "/items/#{blood_orange.id}"
-        save_and_open_page
+
         click_link "#{merchant_1.name}"
         expect(current_path).to eq("/merchants/#{merchant_1.id}")
 

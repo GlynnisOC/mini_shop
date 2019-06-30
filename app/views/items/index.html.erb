@@ -15,6 +15,6 @@
     <p>Price: <%= item.price %></p>
     <p>Status: <%= item.active %></p>
     <p>Quantity: <%= item.inventory %></p>
-    <p>Merchant Name: <%= item.merchant_name %></p>
+    <p>Merchant Name: <%= link_to item.merchant_name, "/merchants/#{item.merchant_id}" %></p>
     <% end %>
 <% end %>
