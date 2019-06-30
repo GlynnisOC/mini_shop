@@ -1,7 +1,22 @@
 class ItemsController < ApplicationController
 
   def index
-    @items = Item.all
+    if params[:merchant_id] == nil
+      @items = Item.all
+    else
+      @merchant = Merchant.find(params[:merchant_id])
+      @items = @merchant.items
+    end
+  end
+
+  def new
+    @merchant_id = params[:merchant_id]
+  end
+
+  def create
+    @merchant = Merchant.find(params[:merchant_id])
+    @item = @merchant.items.create!(item_params)
+    redirect_to "/merchants/#{@merchant.id}/items"
   end
 
   def show
@@ -11,6 +26,6 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:merchant).permit(:name, :description, :price, :image, :active, :inventory)
+    params.permit(:name, :description, :price, :image, :inventory)
   end
 end
