@@ -1,9 +1,9 @@
 require 'rails_helper'
 
-RSpec.describe "Merchant Items Index" do
+RSpec.describe "item show" do
   describe "as a visitor" do
-    describe "when I visit a specific merchant" do
-      it "shows all of that merchant's items" do
+    describe "visiting a specific item's page" do
+      it "shows me the item's info and merchant it belongs to" do
         merchant_1 = Merchant.create!(name: "Tommyknockers Brewery", address: "address", city: "city", state: "state", zip: "zip")
         merchant_2 = Merchant.create!(name: "Westbound and Down", address: "addresstoo", city: "citytoo", state: "statetoo", zip: "ziptoo")
         blood_orange = merchant_1.items.create!(name: "Blood Orange IPA", description: "description", price: "2.00", image: "https://cdn.beeradvocate.com/im/beers/217637.jpg", active: true, inventory:  5, merchant_id: "#{merchant_1.id}")
@@ -12,46 +12,15 @@ RSpec.describe "Merchant Items Index" do
         porter = merchant_2.items.create!(name: "Porter", description: "descriptionfour", price: "4.00", image: "https://2fdltvvn8wp2rn64ywgk8o17-wpengine.netdna-ssl.com/wp-content/uploads/2017/11/baltic-porter-beer.jpg", active: true, inventory:  2, merchant_id: "#{merchant_2.id}")
         pale = merchant_2.items.create!(name: "Pale Ale", description: "descriptionfive", price: "8.00", image: "https://www.mrbeer.com/media/catalog/product/cache/8872124951f387c8ded3f228faa55bea/b/e/beer-amber-pintulw_2_2.jpg", active: true, inventory:  2, merchant_id: "#{merchant_2.id}")
 
-        visit "/merchants/#{merchant_1.id}/items"
+        visit "/items/#{blood_orange.id}"
 
         expect(page).to have_content(blood_orange.name)
-        expect(page).to have_content(blood_orange.price)
         expect(page).to have_xpath("//img[@src='#{blood_orange.image}']")
         expect(page).to have_content(blood_orange.active)
+        expect(page).to have_content(blood_orange.price)
+        expect(page).to have_content(blood_orange.description)
         expect(page).to have_content(blood_orange.inventory)
-
-        expect(page).to_not have_content(porter.name)
-        expect(page).to_not have_content(pale.name)
-
-        expect(page).to have_content(saison.name)
-        expect(page).to have_content(saison.price)
-        expect(page).to have_xpath("//img[@src='#{saison.image}']")
-        expect(page).to have_content(saison.active)
-        expect(page).to have_content(saison.inventory)
-
-        expect(page).to have_content(brown.name)
-        expect(page).to have_content(brown.price)
-        expect(page).to have_xpath("//img[@src='#{brown.image}']")
-        expect(page).to have_content(brown.active)
-        expect(page).to have_content(brown.inventory)
-
-        visit "/merchants/#{merchant_2.id}/items"
-
-        expect(page).to have_content(porter.name)
-        expect(page).to have_content(porter.price)
-        expect(page).to have_xpath("//img[@src='#{porter.image}']")
-        expect(page).to have_content(porter.active)
-        expect(page).to have_content(porter.inventory)
-
-        expect(page).to have_content(pale.name)
-        expect(page).to have_content(pale.price)
-        expect(page).to have_xpath("//img[@src='#{pale.image}']")
-        expect(page).to have_content(pale.active)
-        expect(page).to have_content(pale.inventory)
-
-        expect(page).to_not have_content(blood_orange.name)
-        expect(page).to_not have_content(saison.name)
-        expect(page).to_not have_content(brown.name)
+        expect(page).to have_content(blood_orange.merchant_name)
       end
     end
   end
