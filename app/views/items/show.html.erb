@@ -1,7 +1,8 @@
-<% @merchant.items.each do |item| %>
-  <img src="<%= item.image %>" width="200px"></img>
-  <h3><%= item.name %></h3>
-  <p>Price: <%= item.price %></p>
-  <p>Active: <%= item.active %></p>
-  <p>Inventory Count: <%= item.inventory %></p>
-<% end %>
+
+<img src="<%= @item.image %>" width="200px"></img>
+<h3><%= @item.name %></h3>
+<p>Description: <%= @item.description %></p>
+<p>Price: <%= @item.price %></p>
+<p>Active: <%= @item.active %></p>
+<p>Inventory Count: <%= @item.inventory %></p>
+<p>Merchant: <%= @item.merchant_name %></p>

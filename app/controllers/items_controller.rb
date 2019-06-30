@@ -5,6 +5,12 @@ class ItemsController < ApplicationController
   end
 
   def show
-    @merchant = Merchant.find(params[:id])
+    @item = Item.find(params[:id])
+  end
+
+  private
+
+  def item_params
+    params.require(:merchant).permit(:name, :description, :price, :image, :active, :inventory)
   end
 end
