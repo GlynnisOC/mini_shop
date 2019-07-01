@@ -1,11 +1,12 @@
 <h1>Merchants</h1>
 
 <% @merchants.each do |merchant| %>
+<div style="background-color:teal;color:white;padding:20px;">
   <%= link_to merchant.name, "/merchants/#{merchant.id}" %>
   <%= merchant.address %>
   <%= merchant.city %>
   <%= merchant.state %>
-  <%= merchant.zip %>
+  <%= merchant.zip %></div>
 <% end %>
 
 <%= link_to "Add Merchant", "merchants/new", method: :get %>
